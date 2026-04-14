@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samuel D Sergio Sormin — Professional Bartender</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy2: #1a2d42;
+    --gold: #c9a84c;
+    --gold2: #e8c97a;
+    --cream: #f8f4ee;
+    --white: #ffffff;
+    --gray: #8a8a8a;
+    --light: #f0ebe3;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(13,27,42,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(248,244,238,0.6);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--navy));
+    z-index: 1;
+  }
+
+  /* decorative circle */
+  .hero-ring {
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.1);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 6s ease-in-out infinite;
+  }
+
+  .hero-ring:nth-child(2) {
+    width: 700px; height: 700px;
+    border-color: rgba(201,168,76,0.05);
+    animation-delay: 2s;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.6; }
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-avatar {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy2), #2a4060);
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    color: var(--gold);
+    margin: 0 auto 2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 8vw, 80px);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 1.2rem;
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+
+  .hero-name span { color: var(--gold); }
+
+  .hero-tagline {
+    font-size: 16px;
+    color: rgba(248,244,238,0.55);
+    font-weight: 300;
+    max-width: 480px;
+    line-height: 1.7;
+    margin: 0 auto 2.5rem;
+    animation: fadeUp 0.9s 0.3s ease both;
+  }
+
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.9s 0.4s ease both;
+  }
+
+  .pill {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 100px;
+    padding: 6px 18px;
+    font-size: 12px;
+    color: var(--gold2);
+    letter-spacing: 0.5px;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 36px;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: fadeUp 0.9s 0.5s ease both;
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(201,168,76,0.3);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 5rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 42px);
+    color: var(--white);
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .divider {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin: 1rem 0 2.5rem;
+  }
+
+  /* ── ABOUT ── */
+  .about-text {
+    font-size: 16px;
+    line-height: 1.85;
+    color: rgba(248,244,238,0.7);
+    margin-bottom: 1.2rem;
+  }
+
+  .about-text strong { color: var(--cream); font-weight: 500; }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: 3rem;
+    background: rgba(201,168,76,0.15);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .stat {
+    background: rgba(13,27,42,0.8);
+    padding: 1.8rem 1rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: rgba(248,244,238,0.4);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-card {
+    background: rgba(26,45,66,0.6);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .exp-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .exp-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .exp-company {
+    font-size: 14px;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .exp-badge {
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 100px;
+    padding: 5px 16px;
+    font-size: 12px;
+    color: var(--gold2);
+    white-space: nowrap;
+  }
+
+  .exp-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .exp-list li {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+    color: rgba(248,244,238,0.65);
+    line-height: 1.65;
+  }
+
+  .exp-list li::before {
+    content: '▸';
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-size: 11px;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .skill-block {
+    background: rgba(26,45,66,0.5);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 16px;
+    padding: 1.4rem;
+  }
+
+  .skill-block-title {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    background: rgba(248,244,238,0.06);
+    border: 1px solid rgba(248,244,238,0.1);
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-size: 12px;
+    color: rgba(248,244,238,0.75);
+  }
+
+  /* ── EDUCATION ── */
+  .edu-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .edu-item:last-child { border-bottom: none; }
+
+  .edu-icon {
+    width: 44px; height: 44px;
+    flex-shrink: 0;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .edu-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .edu-school {
+    font-size: 13px;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .edu-year {
+    font-size: 12px;
+    color: rgba(248,244,238,0.35);
+    margin-bottom: 8px;
+  }
+
+  .edu-desc {
+    font-size: 13px;
+    color: rgba(248,244,238,0.5);
+    line-height: 1.65;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    max-width: 800px;
+  }
+
+  .contact-box {
+    background: rgba(26,45,66,0.7);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+  }
+
+  .contact-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .contact-sub {
+    font-size: 14px;
+    color: rgba(248,244,238,0.45);
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .contact-row {
+    background: rgba(13,27,42,0.6);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 12px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+  }
+
+  .contact-ico {
+    font-size: 18px;
+    width: 32px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .contact-lbl {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .contact-val {
+    font-size: 13px;
+    color: rgba(248,244,238,0.8);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    color: rgba(248,244,238,0.2);
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(201,168,76,0.08);
+  }
+
+  footer span { color: var(--gold); opacity: 0.6; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr; }
+    .hero-name { font-size: 38px; }
+    .contact-box { padding: 2rem 1.2rem; }
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">S.D.S.S</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-ring"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-content">
+    <div class="hero-avatar">SS</div>
+    <div class="hero-eyebrow">Professional Bartender · Bali, Indonesia</div>
+    <h1 class="hero-name">Samuel D<br><span>Sergio</span> Sormin</h1>
+    <p class="hero-tagline">Crafting exceptional cocktail experiences at Bali's premier beach clubs. Passionate about beverage artistry, bar operations, and luxury hospitality.</p>
+    <div class="hero-pills">
+      <span class="pill">Cocktail Crafting</span>
+      <span class="pill">Atlas Beach Club</span>
+      <span class="pill">Bar Operations</span>
+      <span class="pill">Guest Experience</span>
+      <span class="pill">F&B Hospitality</span>
+    </div>
+    <a href="#contact" class="hero-cta">Hubungi Saya</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">Tentang Saya</h2>
+    <div class="divider"></div>
+    <p class="about-text">
+      Saya <strong>Samuel D Sergio Sormin</strong>, bartender profesional dengan pengalaman langsung di 
+      <strong>Atlas Beach Club</strong> — salah satu venue pantai paling prestisius di Bali. 
+      Saya menguasai seni pembuatan koktail, manajemen operasional bar, dan pelayanan tamu 
+      berkualitas tinggi di lingkungan yang dinamis dan bertekanan tinggi.
+    </p>
+    <p class="about-text">
+      Dengan latar belakang akademis di bidang bartending dari <strong>Universitas Mediterranean Bali</strong>, 
+      saya memadukan pengetahuan teori dan praktik untuk menghasilkan kualitas produk yang konsisten, 
+      pelayanan yang hangat, dan kolaborasi tim yang solid.
+    </p>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">1+</div>
+        <div class="stat-label">Tahun Pengalaman</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Orders per Shift</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5★</div>
+        <div class="stat-label">Guest Service</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <div class="section-label">Work Experience</div>
+    <h2 class="section-title">Pengalaman Kerja</h2>
+    <div class="divider"></div>
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <div class="exp-title">Bartender Intern</div>
+          <div class="exp-company">Atlas Beach Club · Bali</div>
+        </div>
+        <span class="exp-badge">2025 – 2026</span>
+      </div>
+      <ul class="exp-list">
+        <li>Crafted 50+ cocktail & mocktail orders per shift with consistent quality and speed under high-volume bar conditions at one of Bali's top beach clubs.</li>
+        <li>Managed full bar operations including daily stock inventory, mise en place, garnish preparation, and glassware organization to ensure zero service delays.</li>
+        <li>Delivered warm, professional guest service aligned with Atlas Beach Club's luxury hospitality standards.</li>
+        <li>Collaborated seamlessly with a multi-national bar team, demonstrating strong teamwork and communication in a fast-paced environment.</li>
+        <li>Maintained bar cleanliness and hygiene standards in compliance with F&B health and safety protocols at all times.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">Kemampuan</h2>
+    <div class="divider"></div>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <div class="skill-block-title">Technical</div>
+        <div class="tags">
+          <span class="tag">Cocktail Crafting</span>
+          <span class="tag">Mocktail Making</span>
+          <span class="tag">Flair Basics</span>
+          <span class="tag">Beverage Knowledge</span>
+          <span class="tag">Mise en Place</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-title">Bar Operations</div>
+        <div class="tags">
+          <span class="tag">Inventory Control</span>
+          <span class="tag">Garnish Prep</span>
+          <span class="tag">Glassware Org</span>
+          <span class="tag">Bar Sanitation</span>
+          <span class="tag">POS System</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-title">Soft Skills</div>
+        <div class="tags">
+          <span class="tag">Guest Relations</span>
+          <span class="tag">Team Collaboration</span>
+          <span class="tag">Time Management</span>
+          <span class="tag">Leadership</span>
+          <span class="tag">High Pressure</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-title">Language</div>
+        <div class="tags">
+          <span class="tag">Indonesian (Native)</span>
+          <span class="tag">English (Conversational)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="reveal">
+    <div class="section-label">Education</div>
+    <h2 class="section-title">Pendidikan</h2>
+    <div class="divider"></div>
+    <div class="edu-item">
+      <div class="edu-icon">🍸</div>
+      <div>
+        <div class="edu-degree">Jurusan Bartender</div>
+        <div class="edu-school">Universitas Mediterranean Bali Headquarters</div>
+        <div class="edu-year">2025 – 2026</div>
+        <div class="edu-desc">Mempersiapkan mahasiswa untuk mengelola bar secara profesional — pelayanan tamu, pembuatan cocktail, komunikasi, teamwork & kepemimpinan.</div>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-icon">📚</div>
+      <div>
+        <div class="edu-degree">SMA / Jurusan IPA</div>
+        <div class="edu-school">SMA 2 Rantau Selatan</div>
+        <div class="edu-year">2019 – 2022</div>
+        <div class="edu-desc">Mengembangkan kemampuan analitis, problem solving, dan pemikiran eksperimental yang menjadi fondasi karier profesional.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="reveal">
+    <div class="contact-box">
+      <div class="contact-heading">Mari Berkolaborasi</div>
+      <div class="contact-sub">Terbuka untuk peluang bartender & F&B di Bali dan sekitarnya</div>
+      <div class="contact-items">
+        <div class="contact-row">
+          <div class="contact-ico">📞</div>
+          <div>
+            <div class="contact-lbl">Phone</div>
+            <div class="contact-val">083199863244</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-ico">✉</div>
+          <div>
+            <div class="contact-lbl">Email</div>
+            <div class="contact-val">Samueldsergiosormin@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-ico">📍</div>
+          <div>
+            <div class="contact-lbl">Location</div>
+            <div class="contact-val">Panjer, Denpasar, Bali</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Samuel D Sergio Sormin</span> · Professional Bartender · Bali, Indonesia</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
