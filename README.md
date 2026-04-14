@@ -1,1 +1,0 @@
-# samuelsormin.github.io
